@@ -205,8 +205,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    /* 使用 #38bac4 青色調遮罩 */
-    background: linear-gradient(135deg, rgba(56, 186, 196, 0.65) 0%, rgba(44, 148, 156, 0.7) 100%);
+    /* 使用全站主色深藍色遮罩 */
+    background: linear-gradient(135deg, rgba(30, 77, 122, 0.65) 0%, rgba(15, 61, 92, 0.7) 100%);
     z-index: 1;
 }
 
@@ -226,8 +226,8 @@ body {
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    font-family: var(--font-english);
-    letter-spacing: -0.02em;
+    font-family: var(--font-chinese);
+    letter-spacing: 0.02em;
 }
 
 .hero-subtitle {
@@ -235,6 +235,7 @@ body {
     opacity: 0.95;
     font-weight: 400;
     letter-spacing: 0.02em;
+    font-family: var(--font-english);
 }
 
 /* ============================================
@@ -1188,15 +1189,45 @@ body {
    ============================================ */
 
 .cta {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+    background: var(--primary-blue);
     color: var(--bg-white);
     text-align: center;
     padding: var(--spacing-xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('image/laboratory2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;
+}
+
+.cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* 使用全站主色深藍色遮罩 */
+    background: linear-gradient(135deg, rgba(30, 77, 122, 0.65) 0%, rgba(15, 61, 92, 0.7) 100%);
+    z-index: 1;
 }
 
 .cta-content {
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 
 .cta-title {
