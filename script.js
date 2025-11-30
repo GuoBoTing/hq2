@@ -182,15 +182,27 @@ function initImageModal() {
     if (clickableImages.length > 0 && imageModal && modalImage) {
         // Add click event to all clickable images
         clickableImages.forEach(clickableImage => {
-            clickableImage.addEventListener('click', function() {
-                const img = this.querySelector('img');
-                if (img) {
+            // Find the img element within the clickable container
+            const img = clickableImage.querySelector('img');
+            if (img) {
+                // Add click event directly to the image
+                img.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    modalImage.src = this.src;
+                    modalImage.alt = this.alt;
+                    imageModal.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                });
+
+                // Also add click event to the container for better UX
+                clickableImage.addEventListener('click', function(e) {
+                    e.preventDefault();
                     modalImage.src = img.src;
                     modalImage.alt = img.alt;
                     imageModal.classList.add('active');
                     document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                }
-            });
+                });
+            }
         });
 
         // Close modal functions
