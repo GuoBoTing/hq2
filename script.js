@@ -172,42 +172,44 @@ if (pdfLinks.length > 0 && pdfModal) {
 // Image Modal/Lightbox
 // ============================================
 
-const safetyReportImage = document.getElementById('safety-report-image');
+const clickableImages = document.querySelectorAll('.clickable-image');
 const imageModal = document.getElementById('image-modal');
 const modalImage = document.getElementById('modal-image');
 const modalClose = document.getElementById('image-modal-close');
 const modalBackdrop = document.getElementById('image-modal-backdrop');
 
-if (safetyReportImage && imageModal && modalImage) {
-    // Open modal on image click
-    safetyReportImage.addEventListener('click', function() {
-        const img = this.querySelector('img');
-        if (img) {
-            modalImage.src = img.src;
-            modalImage.alt = img.alt;
-            imageModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        }
+if (clickableImages.length > 0 && imageModal && modalImage) {
+    // Add click event to all clickable images
+    clickableImages.forEach(clickableImage => {
+        clickableImage.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            if (img) {
+                modalImage.src = img.src;
+                modalImage.alt = img.alt;
+                imageModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        });
     });
-    
+
     // Close modal functions
-    function closeModal() {
+    function closeImageModal() {
         imageModal.classList.remove('active');
         document.body.style.overflow = ''; // Restore scrolling
     }
-    
+
     if (modalClose) {
-        modalClose.addEventListener('click', closeModal);
+        modalClose.addEventListener('click', closeImageModal);
     }
-    
+
     if (modalBackdrop) {
-        modalBackdrop.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeImageModal);
     }
-    
+
     // Close modal on ESC key
     document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-            closeModal();
+            closeImageModal();
         }
     });
 }
